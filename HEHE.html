@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERM</title>
+    <style>
+        img { 
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .img-Valentine {
+            width: 500px;
+            height: 500px;
+        }
+        body {
+            background: url('images/valentine-image.png') no-repeat center center;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: rgba(253, 158, 208, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            height: 1000px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #000000;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative; /* Allows positioning of elements */
+        }
+        .yes-button, .no-button {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .no-button {
+            background-color: lightgray;
+            color: black;
+            position: relative; /* Allow movement */
+        }
+        .audio-controls {
+            margin-top: 50px;
+        }
+        .love-img {
+            margin-top: 20px;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <audio class="audio-controls" autoplay loop controls>
+            <source src="World School Road 8.mp3" type="audio/ogg">
+            <embed src="World School Road 8.mp3" autostart="true" loop="true" hidden="true"> 
+        </audio>
+        <p>PLAY IT AFTER PRESSING YES🤭</p>
+        <img id="valentineImage" class="img-Valentine" src="HAHAHA.png" alt="POOKIE">
+        <h1 id="message">Will you be my Valentine? 💖</h1>
+        <div class="buttons" id="buttonContainer">
+            <button class="yes-button" onclick="showMessage(' YAYYYY ME CARRYING YOU HOME HEHE.  Every day with you feels like a blessing, and I’m so grateful to have someone as incredible as you by my side. Your ambition, kindness, and the way you go after your goals inspire me constantly. You make me want to be the best version of myself, and I’m so proud of everything you’ve accomplished.Thank you for being my biggest supporter, my best friend, and the love of my life. I look forward to all the adventures we’ll share together, now and forever.You will always be my valentine until i am alive.Yours always,KYAW')">Yes🗿</button>
+            <button class="no-button" id="noButton">No🙄</button>
+        </div>
+    </div>
+
+    <!-- Audio Controls Section outside the container so it remains visible -->
+
+
+    <script>
+        // Function to update the message and replace the image when "Yes" is clicked
+        function showMessage(message) {
+            document.getElementById('message').innerHTML = message;
+            const valentineImage = document.getElementById('valentineImage');
+
+            // Replace the current image with the new one
+            valentineImage.src = 'Carry.png'; // Path to your uploaded image
+
+            // Remove the buttons after clicking "Yes"
+            document.getElementById('buttonContainer').innerHTML = ''; 
+        }
+
+        // Logic for moving the "No" button when clicked
+        const noButton = document.getElementById('noButton');
+        let clickCount = 0; // Counter to track how many times "No" is clicked
+
+        noButton.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount <= 2) {
+                // Move the button to a random position
+                moveButton();
+            } else {
+                // After two clicks, hide the button
+                noButton.style.display = 'none';
+            }
+        });
+
+        function moveButton() {
+            const container = document.querySelector('.buttons');
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = noButton.getBoundingClientRect();
+
+            // Calculate new random positions for the button
+            const newLeft = Math.random() * (containerRect.width - buttonRect.width);
+            const newTop = Math.random() * (containerRect.height - buttonRect.height);
+
+            // Apply new positions to the button
+            noButton.style.left = `${newLeft}px`;
+            noButton.style.top = `${newTop}px`;
+        }
+    </script>
+</body>
+</html>
